@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajeev Kushwaha - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #6366f1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6366f1;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .contact-info a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #6366f1;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-category h3 {
+            font-size: 1rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .experience-item,
+        .education-item,
+        .project-item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .item-date {
+            font-size: 0.85rem;
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .item-subtitle {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .item-description ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
+        .item-description li {
+            margin-bottom: 5px;
+        }
+
+        .tech-stack {
+            font-size: 0.85rem;
+            color: #6366f1;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .cert-item {
+            margin-bottom: 12px;
+        }
+
+        .cert-name {
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+        }
+
+        .cert-org {
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+
+            .contact-info a {
+                color: #6366f1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>RAJEEV KUSHWAHA</h1>
+        <div class="subtitle">Aspiring ML Engineer & Deep Learning Enthusiast</div>
+        <div class="contact-info">
+            <span>📧 rajeev102003000@gmail.com</span>
+            <span>📱 +91 XXX-XXX-XXXX</span>
+            <span>🔗 <a href="https://github.com/rajeevkush1">github.com/rajeevkush1</a></span>
+            <span>💼 <a href="https://www.linkedin.com/in/rajeev-kushwaha-578b4b242/">LinkedIn</a></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Professional Summary</h2>
+        <p class="summary">
+            Passionate ML Engineer and Deep Learning enthusiast with strong expertise in Python, PyTorch, and modern ML
+            frameworks.
+            Experienced in building end-to-end machine learning pipelines, from data preprocessing to model deployment.
+            Proficient in Natural Language Processing, transformers, and MLOps practices. Demonstrated ability to
+            deliver
+            production-ready AI solutions with quantifiable results. Seeking internship opportunities to apply ML/DL
+            skills
+            in solving real-world problems.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Deep Learning & ML</h3>
+                <div class="skill-list">
+                    PyTorch, TensorFlow, Transformers, RNNs/LSTMs, NLP, Scikit-learn, Pandas, NumPy
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>MLOps & Deployment</h3>
+                <div class="skill-list">
+                    Docker, FastAPI, Flask, Streamlit, Gradio, Git, CI/CD
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-list">
+                    Python (Expert), C/C++, SQL, JavaScript
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data & Visualization</h3>
+                <div class="skill-list">
+                    Matplotlib, Seaborn, Web Scraping, Data Preprocessing, Feature Engineering
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Featured Projects</h2>
+
+        <div class="project-item">
+            <div class="item-header">
+                <div class="item-title">NLP Text Summarization</div>
+                <div class="item-date">2024</div>
+            </div>
+            <div class="item-subtitle">GitHub: github.com/rajeevkush1/TEXT-summarizer-project</div>
+            <div class="item-description">
+                <ul>
+                    <li>Implemented a fine-tuned Transformer model for intelligent text summarization using Hugging Face
+                    </li>
+                    <li>Achieved 88% accuracy, significantly outperforming traditional models like Naive Bayes</li>
+                    <li>Developed solution to summarize lengthy group chat conversations for quick overview</li>
+                </ul>
+                <div class="tech-stack">Tech Stack: Python, Transformers, PyTorch, Pandas, Hugging Face</div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="item-header">
+                <div class="item-title">AI-Powered ATS Resume Checker</div>
+                <div class="item-date">2024</div>
+            </div>
+            <div class="item-subtitle">GitHub: github.com/rajeevkush1/resume-archietecture</div>
+            <div class="item-description">
+                <ul>
+                    <li>Built intelligent system using keyword matching, semantic matching, and rapid fuzzy matching
+                        algorithms</li>
+                    <li>Reduced resume screening time by 70% while maintaining high accuracy in candidate matching</li>
+                    <li>Deployed using Streamlit for easy recruiter access and multi-resume processing capability</li>
+                </ul>
+                <div class="tech-stack">Tech Stack: Python, Transformers, Streamlit, Word Embeddings, Fuzzy Matching
+                </div>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <div class="item-header">
+                <div class="item-title">Student Marks Prediction Pipeline</div>
+                <div class="item-date">2024</div>
+            </div>
+            <div class="item-subtitle">GitHub: github.com/rajeevkush1/mathsmarks</div>
+            <div class="item-description">
+                <ul>
+                    <li>Developed complete end-to-end ML pipeline with data preprocessing, model training, and FastAPI
+                        deployment</li>
+                    <li>Achieved R² score of 0.87 with production-ready API for real-time predictions</li>
+                    <li>Implemented comprehensive data validation and transformation modules</li>
+                </ul>
+                <div class="tech-stack">Tech Stack: Python, FastAPI, Scikit-learn, Pandas, Matplotlib, Docker</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+
+        <div class="education-item">
+            <div class="item-header">
+                <div class="item-title">Bachelor of Technology - Computer Science (AI & ML)</div>
+                <div class="item-date">2023 - 2027</div>
+            </div>
+            <div class="item-subtitle">GL Bajaj Institute of Technology and Management</div>
+            <div class="item-description">
+                Specialization in Artificial Intelligence and Machine Learning
+            </div>
+        </div>
+
+        <div class="education-item">
+            <div class="item-header">
+                <div class="item-title">10+2 in PCM (Physics, Chemistry, Mathematics)</div>
+                <div class="item-date">2020 - 2022</div>
+            </div>
+            <div class="item-subtitle">Delhi Public School - India</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Certifications</h2>
+
+        <div class="cert-item">
+            <div class="cert-name">Generative AI and ChatGPT</div>
+            <div class="cert-org">GeeksforGeeks • Nov 2025</div>
+        </div>
+
+        <div class="cert-item">
+            <div class="cert-name">Mastering Data Transformation through NLP</div>
+            <div class="cert-org">GeeksforGeeks • Oct 2025</div>
+        </div>
+
+        <div class="cert-item">
+            <div class="cert-name">Intro to Machine Learning</div>
+            <div class="cert-org">Kaggle • Feb 2025</div>
+        </div>
+
+        <div class="cert-item">
+            <div class="cert-name">Pandas</div>
+            <div class="cert-org">Kaggle • Feb 2025</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Additional Information</h2>
+        <div class="item-description">
+            <ul>
+                <li><strong>Kaggle Profile:</strong> Active participant in ML competitions and datasets</li>
+                <li><strong>GitHub:</strong> 3+ ML/AI projects with comprehensive documentation</li>
+                <li><strong>Languages:</strong> English (Fluent), Hindi (Native)</li>
+                <li><strong>Interests:</strong> Deep Learning Research, NLP, Computer Vision, MLOps</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
