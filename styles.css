@@ -838,6 +838,16 @@ section::after {
     box-shadow: 0 25px 65px rgba(99, 102, 241, 0.4), 0 0 25px rgba(236, 72, 153, 0.2);
 }
 
+/* Square aspect-ratio box alignment for bottom 3 projects (Projects 3, 4 & 5) */
+.project-card:nth-child(3),
+.project-card:nth-child(4),
+.project-card:nth-child(5) {
+    grid-column: span 2;
+    aspect-ratio: 1 / 1;
+    min-height: 340px;
+    border-radius: 18px;
+}
+
 .project-image {
     position: relative;
     height: 135px;
@@ -848,7 +858,7 @@ section::after {
 .project-card:nth-child(3) .project-image,
 .project-card:nth-child(4) .project-image,
 .project-card:nth-child(5) .project-image {
-    height: 110px;
+    height: 95px;
 }
 
 .project-image img {
@@ -890,6 +900,12 @@ section::after {
     transition: all 0.3s;
 }
 
+.project-card:nth-child(n+3) .project-link {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+}
+
 .project-link:hover {
     transform: scale(1.1);
     background: var(--secondary);
@@ -902,11 +918,20 @@ section::after {
     flex-direction: column;
 }
 
+.project-card:nth-child(n+3) .project-content {
+    padding: 0.8rem 0.95rem 0.75rem;
+}
+
 .project-tags {
     display: flex;
     gap: 0.35rem;
     margin-bottom: 0.65rem;
     flex-wrap: wrap;
+}
+
+.project-card:nth-child(n+3) .project-tags {
+    margin-bottom: 0.4rem;
+    gap: 0.25rem;
 }
 
 .tag {
@@ -918,6 +943,12 @@ section::after {
     font-weight: 600;
 }
 
+.project-card:nth-child(n+3) .tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 6px;
+}
+
 .project-title {
     font-size: 1.15rem;
     font-weight: 700;
@@ -926,14 +957,19 @@ section::after {
     line-height: 1.3;
 }
 
-.project-card:nth-child(3) .project-title,
-.project-card:nth-child(4) .project-title,
-.project-card:nth-child(5) .project-title {
-    font-size: 1.05rem;
+/* Reduced Font Size for Bottom 3 Projects */
+.project-card:nth-child(n+3) .project-title {
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
 }
 
 .project-section {
     margin-bottom: 0.55rem;
+}
+
+.project-card:nth-child(n+3) .project-section {
+    margin-bottom: 0.35rem;
 }
 
 .project-section h4 {
@@ -945,10 +981,21 @@ section::after {
     gap: 0.4rem;
 }
 
+.project-card:nth-child(n+3) .project-section h4 {
+    font-size: 0.73rem;
+    margin-bottom: 0.15rem;
+    gap: 0.3rem;
+}
+
 .project-section p {
     color: var(--text-muted);
     font-size: 0.84rem;
     line-height: 1.45;
+}
+
+.project-card:nth-child(n+3) .project-section p {
+    font-size: 0.75rem;
+    line-height: 1.35;
 }
 
 .project-tech {
@@ -960,6 +1007,11 @@ section::after {
     border-top: 1px solid var(--border);
 }
 
+.project-card:nth-child(n+3) .project-tech {
+    padding-top: 0.5rem;
+    gap: 0.25rem;
+}
+
 .project-tech span {
     padding: 0.2rem 0.5rem;
     background: rgba(139, 92, 246, 0.12);
@@ -968,6 +1020,12 @@ section::after {
     font-size: 0.72rem;
     font-family: 'JetBrains Mono', monospace;
 }
+
+.project-card:nth-child(n+3) .project-tech span {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+}
+
 
 
 /* Education Section */
