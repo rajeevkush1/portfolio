@@ -716,12 +716,15 @@ section {
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 850px;
+    margin: 0 auto;
     position: relative;
     padding: 2rem 0;
 }
+
 
 .project-card {
     background: rgba(12, 14, 24, 0.45);
