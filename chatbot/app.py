@@ -9,8 +9,17 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from openai import OpenAI
 from chatbot.tools import scrape_my_profiles
+import re
+
+def clean_response_text(text: str) -> str:
+    if not text:
+        return ""
+    cleaned = re.sub(r"^(As|I'm|I am) Rajeev'?s Virtual Assistant[.,:]?\s*", "", text, flags=re.IGNORECASE)
+    cleaned = re.sub(r"^As an AI assistant[.,:]?\s*", "", cleaned, flags=re.IGNORECASE)
+    return cleaned.strip()
 
 # Load environment variables from chatbot/.env
+
 env_path = Path(__file__).resolve().parent / ".env"
 load_dotenv(dotenv_path=env_path, override=True)
 
@@ -107,12 +116,13 @@ Here are the details of Rajeev's professional profile:
 - Location: Greater Noida, India
 
 GUIDELINES FOR YOUR RESPONSES:
-
-- Respond as his virtual AI assistant. Keep responses relatively concise and focused on Rajeev's background, skills, and projects. Don't make up any facts.
-- Do NOT pretend to be Rajeev. State that you are his virtual AI assistant. Refer to Rajeev as "Rajeev".
+- NEVER introduce yourself as "Rajeev's Virtual Assistant" or start any response with "As Rajeev's Virtual Assistant," or "I'm Rajeev's Virtual Assistant.".
+- Answer the user's question directly, clearly, and concisely without self-referential introductory phrases.
+- Refer to Rajeev in the third person as "Rajeev".
 - If asked about something not in his portfolio or resume, politely state: "I don't have that information about Rajeev in my database. Feel free to contact him directly at rajeev102003000@gmail.com or connect via LinkedIn."
 - Keep responses professional, helpful, and optimistic. Format key words in bold and use bullet points for lists.
 """
+
 
 @app.get("/api/health")
 def health_check():
@@ -197,9 +207,12 @@ def chat(payload: ChatRequest):
                 temperature=0.7,
                 max_tokens=1000,
             )
-            return ChatResponse(response=second_response.choices[0].message.content or "No response content.")
+            return ChatResponse(response=clean_response_text(second_response.choices[0].message.content or "No response content."))
 
-        return ChatResponse(response=response_message.content or "No response content.")
+        return ChatResponse(response=clean_response_text(response_message.content or "No response content."))
+
+
+
 
         
     except Exception as e:

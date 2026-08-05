@@ -151,8 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Format simple markdown (bold and lists) and newlines
     function formatMessageText(text) {
+        // Strip self-referential intro phrases if present
+        let cleanedText = text
+            .replace(/^(As|I'm|I am) Rajeev'?s Virtual Assistant[.,:]?\s*/i, '')
+            .replace(/^As an AI assistant[.,:]?\s*/i, '');
+
         // Escape HTML to prevent XSS
-        let formatted = text
+        let formatted = cleanedText
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");
@@ -168,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return formatted;
     }
+
 
     // Add a message to the chat display
     function addMessage(sender, text) {
