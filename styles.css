@@ -722,13 +722,13 @@ section::after {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 2fr 2fr 3fr;
+    grid-template-rows: 2fr 2fr 2fr;
     gap: 1.25rem;
     max-width: 1150px;
     margin: 0 auto;
     position: relative;
     padding: 1rem 0;
-    aspect-ratio: 1 / 1; /* All 5 projects together form a perfect square! */
+    aspect-ratio: 1 / 1;
 }
 
 /* Project 1: Size 60x40 (Horizontally, Top-Left) */
@@ -755,26 +755,35 @@ section::after {
     grid-row: 1 / 4;    /* Spans top right to bottom right height */
     display: flex;
     flex-direction: column;
+    max-height: calc(100% - 150px);
+    overflow: hidden;
 }
 
 .project-card:nth-child(2) .project-image {
-    height: 180px;
+    height: 140px;
+    flex-shrink: 0;
 }
 
 /* Projects 3, 4, 5: Size 20x60 each (Below Project 1, Beside Project 2) */
 .project-card:nth-child(3) {
-    grid-column: 1 / 2; /* 20% width (Column 1) */
-    grid-row: 3 / 4;    /* 60% height below Project 1 */
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    max-height: calc(100% - 150px);
+    overflow: hidden;
 }
 
 .project-card:nth-child(4) {
-    grid-column: 2 / 3; /* 20% width (Column 2) */
-    grid-row: 3 / 4;    /* 60% height below Project 1 */
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    max-height: calc(100% - 150px);
+    overflow: hidden;
 }
 
 .project-card:nth-child(5) {
-    grid-column: 3 / 4; /* 20% width (Column 3) */
-    grid-row: 3 / 4;    /* 60% height below Project 1 */
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    max-height: calc(100% - 150px);
+    overflow: hidden;
 }
 
 .project-card {
@@ -803,7 +812,8 @@ section::after {
 .project-card:nth-child(3) .project-image,
 .project-card:nth-child(4) .project-image,
 .project-card:nth-child(5) .project-image {
-    height: 95px;
+    height: 70px;
+    flex-shrink: 0;
 }
 
 .project-image img {
