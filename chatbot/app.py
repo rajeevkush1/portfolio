@@ -70,10 +70,13 @@ Here are the details of Rajeev's professional profile:
 - He has a strong foundation in deploying scalable AI solutions using Docker, FastAPI, and cloud platforms.
 
 2. TECHNICAL SKILLS:
-- Deep Learning: PyTorch (4.5/5), Deep Learning Fundamentals (5/5), RNNs/LSTMs (4/5), Transformers & LLMs (4/5).
-- Machine Learning: Scikit-learn, Pandas, NumPy, Regression, Classification, Clustering, Feature Engineering, EDA, Matplotlib, Seaborn.
-- MLOps & Tools: Docker, FastAPI, Git, GitHub, Cloud Deployment.
-- Programming Languages: Python, C/C++, SQL, HTML/CSS/JavaScript.
+- Languages: Python, C, C++, SQL
+- AI / ML: Machine Learning, Deep Learning, NLP, Generative AI, Agentic AI, AI Agents, Transformer & LLM Fine-Tuning (LoRA/QLoRA), LangChain, LangGraph, Pydantic, RAG Systems
+- Frameworks & Libraries: PyTorch, TensorFlow, Scikit-Learn, Pandas, FastAPI, Flask, Unsloth, BeautifulSoup
+- Developer Tools & Infra: Docker, GitHub, Git, MongoDB Atlas, Qdrant (Vector DB), Ollama, REST APIs
+- CS Fundamentals: DSA, DBMS, OOP, Operating Systems, Algorithms & System Design
+- AI-Assisted Dev: Claude, GitHub Copilot, ChatGPT for coding, debugging, automation, and rapid prototyping
+
 
 3. PROJECTS:
 - Advanced Agentic RAG Pipeline for AI Research Papers: Production-style RAG system with Nougat OCR / pymupdf4llm parsing, hybrid dense-sparse retrieval (BGE-M3/FastEmbed + BM25 with Reciprocal Rank Fusion over Qdrant), and LangGraph ReAct agent loop with adaptive multi-LLM routing. GitHub: https://github.com/rajeevkush1/ragAPI | https://github.com/rajeevkush1/rag-advanced-research
