@@ -6,8 +6,11 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "fastapi>=0.141.1",
+    "firecrawl-py>=1.0.0",
     "google-genai>=2.16.0",
+    "langchain-core>=0.3.0",
     "openai>=2.53.0",
     "python-dotenv>=1.2.2",
     "uvicorn>=0.52.1",
 ]
+

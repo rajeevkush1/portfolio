@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 from typing import List, Optional
@@ -7,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from openai import OpenAI
+from chatbot.tools import scrape_my_profiles
 
 # Load environment variables from chatbot/.env
 env_path = Path(__file__).resolve().parent / ".env"
@@ -22,6 +24,27 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Tool schema definition for Groq OpenAI tool calling
+SCRAPE_TOOL_SCHEMA = {
+    "type": "function",
+    "function": {
+        "name": "scrape_my_profiles",
+        "description": "Scrapes Rajeev's personal profiles (github or kaggle) to retrieve up-to-date live information.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "platform": {
+                    "type": "string",
+                    "description": "The profile platform to scrape. Must be 'github' or 'kaggle'.",
+                    "enum": ["github", "kaggle"]
+                }
+            },
+            "required": ["platform"]
+        }
+    }
+}
+
 
 # Pydantic models for request/response validation
 class ChatMessage(BaseModel):
@@ -123,15 +146,53 @@ def chat(payload: ChatRequest):
         # Append the new user message
         messages.append({"role": "user", "content": payload.message})
         
-        # Call Groq Chat Completions endpoint with llama-3.3-70b-versatile
+        # Call Groq Chat Completions endpoint with llama-3.3-70b-versatile and scrape_my_profiles tool
         response = client.chat.completions.create(
             model='llama-3.3-70b-versatile',
             messages=messages,
+            tools=[SCRAPE_TOOL_SCHEMA],
+            tool_choice="auto",
             temperature=0.7,
             max_tokens=1000,
         )
         
-        return ChatResponse(response=response.choices[0].message.content)
+        response_message = response.choices[0].message
+        
+        # Check if model requested a tool call
+        if response_message.tool_calls:
+            # Append assistant message with tool calls
+            messages.append(response_message)
+            
+            for tool_call in response_message.tool_calls:
+                function_name = tool_call.function.name
+                if function_name == "scrape_my_profiles":
+                    try:
+                        args = json.loads(tool_call.function.arguments)
+                        platform_arg = args.get("platform", "github")
+                    except Exception:
+                        platform_arg = "github"
+                        
+                    tool_output = scrape_my_profiles.invoke({"platform": platform_arg})
+                    
+                    # Append tool result message
+                    messages.append({
+                        "tool_call_id": tool_call.id,
+                        "role": "tool",
+                        "name": function_name,
+                        "content": str(tool_output),
+                    })
+            
+            # Send second request with tool outputs included
+            second_response = client.chat.completions.create(
+                model='llama-3.3-70b-versatile',
+                messages=messages,
+                temperature=0.7,
+                max_tokens=1000,
+            )
+            return ChatResponse(response=second_response.choices[0].message.content or "No response content.")
+
+        return ChatResponse(response=response_message.content or "No response content.")
+
         
     except Exception as e:
         raise HTTPException(
