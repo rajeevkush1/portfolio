@@ -11,26 +11,27 @@
     --secondary: #ec4899;
     --accent: #a855f7;
     --cyan-glow: #06b6d4;
-    --bg-dark: #030305;
-    --bg-darker: #000000;                     /* Pure Pitch Black */
-    --bg-card: rgba(10, 12, 22, 0.65);         /* Obsidian Pure Glass */
-    --bg-glass-hover: rgba(18, 22, 40, 0.85);
+    --bg-dark: #000009;                        /* Deep Pitch Black #000009 */
+    --bg-darker: #000009;                      /* Deep Pitch Black #000009 */
+    --bg-card: rgba(0, 0, 9, 0.75);             /* #000009 Pure Glass */
+    --bg-glass-hover: rgba(10, 10, 24, 0.85);
     --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: #94a3b8;
     --border: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(99, 102, 241, 0.5);
     --glow: rgba(99, 102, 241, 0.3);
-    --glass-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(99, 102, 241, 0.15);
+    --glass-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(99, 102, 241, 0.15);
 }
 
 html {
     scroll-behavior: smooth;
+    background-color: #000009;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #000000;
+    background-color: #000009;
     background-image: 
         radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
         radial-gradient(circle at 85% 65%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
@@ -40,6 +41,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
+
 
 /* Ambient Floating Glass Background Orbs */
 body::before, body::after {
