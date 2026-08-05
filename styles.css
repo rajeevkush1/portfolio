@@ -1715,8 +1715,81 @@ section {
     
     .chatbot-trigger {
         bottom: 20px;
-        right: 20px;
-    }
+
+/* ==========================================================================
+   Motion UI / Interactive Portfolio Animations System
+   ========================================================================== */
+
+/* Custom Glowing Cursor Follower */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease-out, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    box-shadow: 0 0 15px var(--primary);
 }
+
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(99, 102, 241, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s cubic-bezier(0.1, 0.7, 0.1, 1), width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    background: rgba(99, 102, 241, 0.04);
+    backdrop-filter: blur(2px);
+}
+
+.custom-cursor.active {
+    width: 14px;
+    height: 14px;
+    background: var(--secondary);
+    box-shadow: 0 0 25px var(--secondary);
+}
+
+.cursor-follower.active {
+    width: 64px;
+    height: 64px;
+    border-color: rgba(236, 72, 153, 0.6);
+    background: rgba(236, 72, 153, 0.08);
+}
+
+/* Motion Reveal Animations */
+.motion-reveal {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.motion-reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* 3D Magnetic Interactive Motion Card Perspective */
+.tilt-card {
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+/* Magnetic Button & Link Hover Effects */
+.btn-primary, .btn-secondary, .nav-link, .skill-pill, .project-link {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background 0.3s ease;
+    will-change: transform;
+}
+
 
 

@@ -39,44 +39,84 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for animations
+// Motion UI Reveal Observer
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('motion-reveal-active');
         }
     });
 }, observerOptions);
 
-// Observe all sections and cards
-document.querySelectorAll('section, .project-card, .skill-category, .stat-item, .cert-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+// Observe sections without destroying keyframe transform rules
+document.querySelectorAll('section, .skill-category, .stat-item').forEach(el => {
+    el.classList.add('motion-reveal');
     observer.observe(el);
 });
 
-// Skill bars animation
-const skillBars = document.querySelectorAll('.skill-progress');
-const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const width = entry.target.style.width;
-            entry.target.style.width = '0';
-            setTimeout(() => {
-                entry.target.style.width = width;
-            }, 100);
-        }
-    });
-}, { threshold: 0.5 });
+/* ==========================================================================
+   Motion UI Custom Cursor & Interactive 3D Tilt System
+   ========================================================================== */
 
-skillBars.forEach(bar => skillObserver.observe(bar));
+const customCursor = document.getElementById('customCursor');
+const cursorFollower = document.getElementById('cursorFollower');
+
+if (customCursor && cursorFollower && window.innerWidth > 768) {
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        customCursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    });
+
+    function animateFollower() {
+        followerX += (mouseX - followerX) * 0.12;
+        followerY += (mouseY - followerY) * 0.12;
+        cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    // Hover scale expansion on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-pill, .stat-item, .cert-item');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            customCursor.classList.add('active');
+            cursorFollower.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('active');
+            cursorFollower.classList.remove('active');
+        });
+    });
+}
+
+// 3D Motion Card Tilt Effect on Mouse Move
+document.querySelectorAll('.skill-category, .stat-item').forEach(card => {
+    card.classList.add('tilt-card');
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+});
+
 
 // Active nav link on scroll
 const sections = document.querySelectorAll('section[id]');
