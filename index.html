@@ -272,10 +272,95 @@
                 <p class="section-subtitle">Problem → Solution → Quantified Results</p>
             </div>
             <div class="projects-grid">
-                <!-- Project 1: Text Summarization -->
+                <!-- Project 1: Advanced Agentic RAG Pipeline -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="project1-placeholder.jpg" alt="Text Summarization Project" id="project1Image">
+                        <img src="project1-placeholder.jpg" alt="Advanced Agentic RAG Pipeline" id="project1Image">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajeevkush1/ragAPI" target="_blank" class="project-link" title="GitHub: ragAPI">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://github.com/rajeevkush1/rag-advanced-research" target="_blank" class="project-link" title="GitHub: rag-advanced-research">
+                                <i class="fas fa-code-branch"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Agentic RAG</span>
+                            <span class="tag">LangGraph</span>
+                            <span class="tag">Qdrant</span>
+                            <span class="tag">FastAPI</span>
+                        </div>
+                        <h3 class="project-title">Advanced Agentic RAG Pipeline for AI Research Papers</h3>
+                        <div class="project-section">
+                            <h4><i class="fas fa-exclamation-circle"></i> The Problem</h4>
+                            <p>Parsing complex academic research PDFs (preserving equations, tables, section structures) and answering questions with cited sources.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4><i class="fas fa-lightbulb"></i> The Solution</h4>
+                            <p>Engineered a production-style RAG system with Nougat OCR / pymupdf4llm parsing, hybrid dense-sparse retrieval (BGE-M3/FastEmbed + BM25 via Reciprocal Rank Fusion over Qdrant), and a LangGraph ReAct agent loop with adaptive multi-LLM routing (Groq → Gemini → Ollama).</p>
+                        </div>
+                        <div class="project-section">
+                            <h4><i class="fas fa-chart-bar"></i> The Results</h4>
+                            <p>Delivered low-latency SSE token streaming & step-by-step pipeline tracking via a React interface; fully Dockerized with a toggleable local embedding model (BGE-small vs. MiniLM) to minimize embedding costs.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span>LangGraph</span>
+                            <span>Qdrant</span>
+                            <span>FastEmbed</span>
+                            <span>FastAPI</span>
+                            <span>React</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: AI Resume Checker & ATS Scanner -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project2-placeholder.jpg" alt="AI Resume Checker & ATS Scanner" id="project2Image">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajeevkush1/resume-archietecture/tree/main/resume-checker"
+                                target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">ATS Scanner</span>
+                            <span class="tag">Sentence-Transformers</span>
+                            <span class="tag">spaCy</span>
+                            <span class="tag">Unsloth</span>
+                        </div>
+                        <h3 class="project-title">AI Resume Checker & ATS Scanner</h3>
+                        <div class="project-section">
+                            <h4><i class="fas fa-exclamation-circle"></i> The Problem</h4>
+                            <p>Accurately scoring resume-to-job-description fit and surfacing missing keywords without external API dependencies.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4><i class="fas fa-lightbulb"></i> The Solution</h4>
+                            <p>Built an ATS resume scanner web app with a composite scoring formula (37% spaCy keyword matching + 63% Sentence-Transformers semantic similarity) and fine-tuned LLaMA (LoRA/QLoRA via Unsloth) for structured resume parsing.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4><i class="fas fa-chart-bar"></i> The Results</h4>
+                            <p>Reduced resume screening time by <strong>70%</strong> with 100% local, in-memory processing (0–100% ATS match score), shipped with Streamlit UI and Docker containerization.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span>Streamlit</span>
+                            <span>spaCy</span>
+                            <span>Sentence-Transformers</span>
+                            <span>Unsloth</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: NLP Text Summarizer Pipeline -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project1-placeholder.jpg" alt="NLP Text Summarizer Pipeline" id="project3Image">
                         <div class="project-overlay">
                             <a href="https://github.com/rajeevkush1/TEXT-summarizer-project" target="_blank"
                                 class="project-link">
@@ -286,81 +371,76 @@
                     <div class="project-content">
                         <div class="project-tags">
                             <span class="tag">NLP</span>
+                            <span class="tag">Hugging Face</span>
                             <span class="tag">Transformers</span>
-                            <span class="tag">PyTorch</span>
+                            <span class="tag">FastAPI</span>
                         </div>
-                        <h3 class="project-title">NLP Text Summarization</h3>
+                        <h3 class="project-title">Text Summarizer Pipeline</h3>
                         <div class="project-section">
                             <h4><i class="fas fa-exclamation-circle"></i> The Problem</h4>
-                            <p>Summarizing lengthy text group chats to get a quick overview of conversations without
-                                reading everything.</p>
+                            <p>Summarizing lengthy text group chats and documents into concise, high-quality abstractive summaries.</p>
                         </div>
                         <div class="project-section">
                             <h4><i class="fas fa-lightbulb"></i> The Solution</h4>
-                            <p>Implemented a fine-tuned Transformer model for intelligent text summarization using
-                                Hugging Face.</p>
+                            <p>Built an end-to-end NLP text summarization pipeline with a modular, configuration-driven architecture (`config.yaml`/`params.yaml`) separating ingestion, transformation, training, and evaluation stages.</p>
                         </div>
                         <div class="project-section">
                             <h4><i class="fas fa-chart-bar"></i> The Results</h4>
-                            <p>Achieved <strong>88% accuracy</strong>, significantly outperforming traditional models
-                                like Naive Bayes.</p>
+                            <p>Fine-tuned a Hugging Face Transformer model evaluated with ROUGE/SacreBLEU metrics, achieving <strong>88% accuracy</strong>; containerized with Docker and served via FastAPI.</p>
                         </div>
                         <div class="project-tech">
                             <span>Python</span>
                             <span>Transformers</span>
-                            <span>Pandas</span>
-                            <span>Hugging Face</span>
+                            <span>PyTorch</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: ATS Resume Checker -->
+                <!-- Project 4: Minesweeper RL Agent -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="project2-placeholder.jpg" alt="ATS Resume Checker" id="project2Image">
+                        <img src="project3-placeholder.jpg" alt="Minesweeper RL Agent" id="project4Image">
                         <div class="project-overlay">
-                            <a href="https://github.com/rajeevkush1/resume-archietecture/tree/main/resume-checker"
-                                target="_blank" class="project-link">
+                            <a href="https://github.com/rajeevkush1" target="_blank" class="project-link">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
                     </div>
                     <div class="project-content">
                         <div class="project-tags">
-                            <span class="tag">NLP</span>
-                            <span class="tag">Streamlit</span>
-                            <span class="tag">ML</span>
+                            <span class="tag">Reinforcement Learning</span>
+                            <span class="tag">GRPOTrainer</span>
+                            <span class="tag">Vertex AI</span>
+                            <span class="tag">AMD Hackathon</span>
                         </div>
-                        <h3 class="project-title">AI-Powered ATS Resume Checker</h3>
+                        <h3 class="project-title">Minesweeper RL Agent – Reinforcement Learning</h3>
                         <div class="project-section">
                             <h4><i class="fas fa-exclamation-circle"></i> The Problem</h4>
-                            <p>Helping recruiters efficiently screen multiple resumes to find the best candidates for
-                                job positions.</p>
+                            <p>Developing an autonomous AI agent capable of strategic decision-making and optimal exploration under uncertain puzzle states.</p>
                         </div>
                         <div class="project-section">
                             <h4><i class="fas fa-lightbulb"></i> The Solution</h4>
-                            <p>Built an intelligent system using keyword matching, semantic matching, and rapid fuzzy
-                                matching algorithms.</p>
+                            <p>Trained a Minesweeper-playing agent using `GRPOTrainer` with custom reward shaping at the AMD Hackathon (IIT Delhi), running on a Jupyter-kernel VM on Vertex AI Workbench.</p>
                         </div>
                         <div class="project-section">
                             <h4><i class="fas fa-chart-bar"></i> The Results</h4>
-                            <p>Reduced resume screening time by <strong>70%</strong> while maintaining high accuracy in
-                                candidate matching.</p>
+                            <p>Successfully evaluated and optimized exploration/exploitation trade-offs across training episodes for maximum decision accuracy.</p>
                         </div>
                         <div class="project-tech">
                             <span>Python</span>
-                            <span>Transformers</span>
-                            <span>Streamlit</span>
-                            <span>Fuzzy Matching</span>
-                            <span>Word Embeddings</span>
+                            <span>GRPOTrainer</span>
+                            <span>PyTorch</span>
+                            <span>Vertex AI Workbench</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 3: Marks Prediction -->
+                <!-- Project 5: Student Marks Prediction Pipeline -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="project3-placeholder.jpg" alt="Student Marks Prediction" id="project3Image">
+                        <img src="project2-placeholder.jpg" alt="Student Marks Prediction Pipeline" id="project5Image">
                         <div class="project-overlay">
                             <a href="https://github.com/rajeevkush1/mathsmarks" target="_blank" class="project-link">
                                 <i class="fab fa-github"></i>
@@ -369,25 +449,22 @@
                     </div>
                     <div class="project-content">
                         <div class="project-tags">
-                            <span class="tag">ML</span>
+                            <span class="tag">ML Pipeline</span>
+                            <span class="tag">Scikit-learn</span>
                             <span class="tag">FastAPI</span>
-                            <span class="tag">End-to-End</span>
                         </div>
                         <h3 class="project-title">Student Marks Prediction Pipeline</h3>
                         <div class="project-section">
                             <h4><i class="fas fa-exclamation-circle"></i> The Problem</h4>
-                            <p>Predicting student performance based on various demographic and academic factors to
-                                enable early intervention.</p>
+                            <p>Predicting student performance based on demographic and academic factors to enable early academic intervention.</p>
                         </div>
                         <div class="project-section">
                             <h4><i class="fas fa-lightbulb"></i> The Solution</h4>
-                            <p>Developed a complete end-to-end ML pipeline with data preprocessing, model training, and
-                                FastAPI deployment.</p>
+                            <p>Developed a complete end-to-end ML pipeline with data preprocessing, model training, and FastAPI deployment.</p>
                         </div>
                         <div class="project-section">
                             <h4><i class="fas fa-chart-bar"></i> The Results</h4>
-                            <p>Achieved <strong>R² score of 0.87</strong> with production-ready API for real-time
-                                predictions.</p>
+                            <p>Achieved <strong>R² score of 0.87</strong> with a production-ready API for real-time predictions.</p>
                         </div>
                         <div class="project-tech">
                             <span>Python</span>
@@ -395,45 +472,6 @@
                             <span>Scikit-learn</span>
                             <span>Pandas</span>
                             <span>Matplotlib</span>
-                    </div>
-                </div>
-
-                <!-- Project 4: RAG System API -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="project1-placeholder.jpg" alt="RAG System API" id="project4Image">
-                        <div class="project-overlay">
-                            <a href="https://github.com/rajeevkush1/ragAPI" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">RAG</span>
-                            <span class="tag">LLMs</span>
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">Vector Search</span>
-                        </div>
-                        <h3 class="project-title">RAG System API</h3>
-                        <div class="project-section">
-                            <h4><i class="fas fa-exclamation-circle"></i> The Problem</h4>
-                            <p>Efficiently retrieving and synthesizing accurate contextual knowledge from large unstructured documents for AI models.</p>
-                        </div>
-                        <div class="project-section">
-                            <h4><i class="fas fa-lightbulb"></i> The Solution</h4>
-                            <p>Developed a high-performance RAG API featuring document ingestion, vector embeddings, chunking, and semantic search integration.</p>
-                        </div>
-                        <div class="project-section">
-                            <h4><i class="fas fa-chart-bar"></i> The Results</h4>
-                            <p>Delivers low-latency retrieval with high semantic precision over custom knowledge bases.</p>
-                        </div>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>FastAPI</span>
-                            <span>RAG</span>
-                            <span>LangChain</span>
-                            <span>Vector DB</span>
                         </div>
                     </div>
                 </div>
