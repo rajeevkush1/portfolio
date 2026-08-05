@@ -878,8 +878,8 @@ section::after {
     flex-direction: column;
 }
 
-.project-card:nth-child(n+3) .project-content {
-    padding: 0.8rem 0.95rem 0.75rem;
+.project-card:nth-child(n+2) .project-content {
+    padding: 0.8rem 0.9rem 0.7rem;
 }
 
 .project-tags {
@@ -889,9 +889,9 @@ section::after {
     flex-wrap: wrap;
 }
 
-.project-card:nth-child(n+3) .project-tags {
-    margin-bottom: 0.4rem;
-    gap: 0.25rem;
+.project-card:nth-child(n+2) .project-tags {
+    margin-bottom: 0.35rem;
+    gap: 0.2rem;
 }
 
 .tag {
@@ -903,10 +903,18 @@ section::after {
     font-weight: 600;
 }
 
-.project-card:nth-child(n+3) .tag {
-    font-size: 0.60rem;
-    padding: 0.12rem 0.38rem;
+.project-card:nth-child(2) .tag {
+    font-size: 0.64rem;
+    padding: 0.12rem 0.4rem;
     border-radius: 6px;
+}
+
+.project-card:nth-child(3) .tag,
+.project-card:nth-child(4) .tag,
+.project-card:nth-child(5) .tag {
+    font-size: 0.56rem;
+    padding: 0.1rem 0.32rem;
+    border-radius: 5px;
 }
 
 .project-title {
@@ -917,19 +925,28 @@ section::after {
     line-height: 1.3;
 }
 
-/* Ultra-Compact Reduced Font Size for Bottom 3 Projects */
-.project-card:nth-child(n+3) .project-title {
-    font-size: 0.85rem;
-    margin-bottom: 0.3rem;
-    line-height: 1.2;
+/* Reduced Font Size for Project 2 */
+.project-card:nth-child(2) .project-title {
+    font-size: 0.92rem;
+    margin-bottom: 0.35rem;
+    line-height: 1.22;
+}
+
+/* Ultra-Compact Reduced Font Size for Projects 3, 4, 5 */
+.project-card:nth-child(3) .project-title,
+.project-card:nth-child(4) .project-title,
+.project-card:nth-child(5) .project-title {
+    font-size: 0.78rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.18;
 }
 
 .project-section {
     margin-bottom: 0.55rem;
 }
 
-.project-card:nth-child(n+3) .project-section {
-    margin-bottom: 0.25rem;
+.project-card:nth-child(n+2) .project-section {
+    margin-bottom: 0.2rem;
 }
 
 .project-section h4 {
@@ -941,10 +958,18 @@ section::after {
     gap: 0.4rem;
 }
 
-.project-card:nth-child(n+3) .project-section h4 {
-    font-size: 0.68rem;
+.project-card:nth-child(2) .project-section h4 {
+    font-size: 0.72rem;
     margin-bottom: 0.1rem;
     gap: 0.25rem;
+}
+
+.project-card:nth-child(3) .project-section h4,
+.project-card:nth-child(4) .project-section h4,
+.project-card:nth-child(5) .project-section h4 {
+    font-size: 0.64rem;
+    margin-bottom: 0.08rem;
+    gap: 0.2rem;
 }
 
 .project-section p {
@@ -953,9 +978,16 @@ section::after {
     line-height: 1.45;
 }
 
-.project-card:nth-child(n+3) .project-section p {
-    font-size: 0.70rem;
-    line-height: 1.25;
+.project-card:nth-child(2) .project-section p {
+    font-size: 0.74rem;
+    line-height: 1.28;
+}
+
+.project-card:nth-child(3) .project-section p,
+.project-card:nth-child(4) .project-section p,
+.project-card:nth-child(5) .project-section p {
+    font-size: 0.66rem;
+    line-height: 1.2;
 }
 
 .project-tech {
@@ -967,9 +999,9 @@ section::after {
     border-top: 1px solid var(--border);
 }
 
-.project-card:nth-child(n+3) .project-tech {
-    padding-top: 0.4rem;
-    gap: 0.2rem;
+.project-card:nth-child(n+2) .project-tech {
+    padding-top: 0.35rem;
+    gap: 0.18rem;
 }
 
 .project-tech span {
@@ -981,10 +1013,18 @@ section::after {
     font-family: 'JetBrains Mono', monospace;
 }
 
-.project-card:nth-child(n+3) .project-tech span {
-    font-size: 0.60rem;
+.project-card:nth-child(2) .project-tech span {
+    font-size: 0.64rem;
     padding: 0.12rem 0.38rem;
 }
+
+.project-card:nth-child(3) .project-tech span,
+.project-card:nth-child(4) .project-tech span,
+.project-card:nth-child(5) .project-tech span {
+    font-size: 0.56rem;
+    padding: 0.1rem 0.32rem;
+}
+
 
 
 
