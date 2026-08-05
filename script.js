@@ -242,7 +242,7 @@ console.log('Portfolio loaded successfully! 🚀');
 // ==========================================================================
 // Chatbot Widget Functionality
 // ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
+function initChatbot() {
     const chatbotTrigger = document.getElementById('chatbotTrigger');
     const chatbotWindow = document.getElementById('chatbotWindow');
     const chatbotClose = document.getElementById('chatbotClose');
@@ -251,11 +251,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatbotSend = document.getElementById('chatbotSend');
     const chatbotTyping = document.getElementById('chatbotTyping');
 
+    if (!chatbotTrigger || !chatbotWindow) return;
+
     let chatHistory = [];
-    // Default API URL (can be changed to production URL in deployment)
-    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? 'http://127.0.0.1:8000' 
-        : 'http://127.0.0.1:8000'; // Default to localhost backend
+    // Dynamic API URL: use current origin if on http server, fallback to http://127.0.0.1:8000
+    const API_URL = (window.location.protocol.startsWith('http'))
+        ? window.location.origin 
+        : 'http://127.0.0.1:8000';
 
     // Format simple markdown (bold and lists) and newlines
     function formatMessageText(text) {
@@ -282,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return formatted;
     }
 
-
     // Add a message to the chat display
     function addMessage(sender, text) {
         if (!chatbotMessages) return;
@@ -308,8 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Toggle chatbot window
-    chatbotTrigger?.addEventListener('click', () => {
-        chatbotWindow?.classList.toggle('chatbot-hidden');
+    chatbotTrigger.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('chatbot-hidden');
         
         // Remove notification dot once opened
         const notificationDot = chatbotTrigger.querySelector('.chatbot-notification-dot');
@@ -325,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close chatbot window
     chatbotClose?.addEventListener('click', () => {
-        chatbotWindow?.classList.add('chatbot-hidden');
+        chatbotWindow.classList.add('chatbot-hidden');
     });
 
     // Send message function
@@ -376,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Chatbot API Error:', error);
             chatbotTyping.classList.add('chatbot-hidden');
-            addMessage('bot', `⚠️ Sorry, I ran into an error: ${error.message}. Please make sure the backend server is running and the GEMINI_API_KEY is configured.`);
+            addMessage('bot', `⚠️ Sorry, I ran into an error connecting to backend: ${error.message}. Please verify the server is running on http://127.0.0.1:8000.`);
         } finally {
             // Re-enable inputs
             chatbotInput.disabled = false;
@@ -395,4 +396,11 @@ document.addEventListener('DOMContentLoaded', () => {
             handleSendMessage();
         }
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatbot);
+} else {
+    initChatbot();
+}
+
