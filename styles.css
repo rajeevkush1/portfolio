@@ -722,13 +722,13 @@ section::after {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 2fr 2fr 2fr;
+    grid-template-rows: 2fr 2fr 3fr;
     gap: 1.25rem;
     max-width: 1150px;
     margin: 0 auto;
     position: relative;
     padding: 1rem 0;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1; /* All 5 projects together form a perfect square! */
 }
 
 /* Project 1: Size 60x40 (Horizontally, Top-Left) */
@@ -755,35 +755,26 @@ section::after {
     grid-row: 1 / 4;    /* Spans top right to bottom right height */
     display: flex;
     flex-direction: column;
-    max-height: calc(100% - 150px);
-    overflow: hidden;
 }
 
 .project-card:nth-child(2) .project-image {
-    height: 140px;
-    flex-shrink: 0;
+    height: 180px;
 }
 
 /* Projects 3, 4, 5: Size 20x60 each (Below Project 1, Beside Project 2) */
 .project-card:nth-child(3) {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
-    max-height: calc(100% - 150px);
-    overflow: hidden;
+    grid-column: 1 / 2; /* 20% width (Column 1) */
+    grid-row: 3 / 4;    /* 60% height below Project 1 */
 }
 
 .project-card:nth-child(4) {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    max-height: calc(100% - 150px);
-    overflow: hidden;
+    grid-column: 2 / 3; /* 20% width (Column 2) */
+    grid-row: 3 / 4;    /* 60% height below Project 1 */
 }
 
 .project-card:nth-child(5) {
-    grid-column: 3 / 4;
-    grid-row: 3 / 4;
-    max-height: calc(100% - 150px);
-    overflow: hidden;
+    grid-column: 3 / 4; /* 20% width (Column 3) */
+    grid-row: 3 / 4;    /* 60% height below Project 1 */
 }
 
 .project-card {
@@ -812,8 +803,7 @@ section::after {
 .project-card:nth-child(3) .project-image,
 .project-card:nth-child(4) .project-image,
 .project-card:nth-child(5) .project-image {
-    height: 70px;
-    flex-shrink: 0;
+    height: 95px;
 }
 
 .project-image img {
@@ -899,9 +889,9 @@ section::after {
 }
 
 .project-card:nth-child(2) .tag {
-    font-size: 0.64rem;
-    padding: 0.12rem 0.4rem;
-    border-radius: 6px;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 8px;
 }
 
 .project-card:nth-child(3) .tag,
@@ -920,11 +910,11 @@ section::after {
     line-height: 1.3;
 }
 
-/* Reduced Font Size for Project 2 */
+/* Font Size for Project 2 */
 .project-card:nth-child(2) .project-title {
-    font-size: 0.92rem;
-    margin-bottom: 0.35rem;
-    line-height: 1.22;
+    font-size: 1.05rem;
+    margin-bottom: 0.45rem;
+    line-height: 1.3;
 }
 
 /* Ultra-Compact Reduced Font Size for Projects 3, 4, 5 */
@@ -954,9 +944,9 @@ section::after {
 }
 
 .project-card:nth-child(2) .project-section h4 {
-    font-size: 0.72rem;
-    margin-bottom: 0.1rem;
-    gap: 0.25rem;
+    font-size: 0.82rem;
+    margin-bottom: 0.18rem;
+    gap: 0.3rem;
 }
 
 .project-card:nth-child(3) .project-section h4,
@@ -974,8 +964,8 @@ section::after {
 }
 
 .project-card:nth-child(2) .project-section p {
-    font-size: 0.74rem;
-    line-height: 1.28;
+    font-size: 0.84rem;
+    line-height: 1.4;
 }
 
 .project-card:nth-child(3) .project-section p,
@@ -1009,8 +999,8 @@ section::after {
 }
 
 .project-card:nth-child(2) .project-tech span {
-    font-size: 0.64rem;
-    padding: 0.12rem 0.38rem;
+    font-size: 0.74rem;
+    padding: 0.18rem 0.5rem;
 }
 
 .project-card:nth-child(3) .project-tech span,
