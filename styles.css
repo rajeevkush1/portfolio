@@ -944,8 +944,8 @@ section::after {
 }
 
 .project-card:nth-child(n+3) .tag {
-    font-size: 0.65rem;
-    padding: 0.15rem 0.45rem;
+    font-size: 0.60rem;
+    padding: 0.12rem 0.38rem;
     border-radius: 6px;
 }
 
@@ -957,11 +957,11 @@ section::after {
     line-height: 1.3;
 }
 
-/* Reduced Font Size for Bottom 3 Projects */
+/* Ultra-Compact Reduced Font Size for Bottom 3 Projects */
 .project-card:nth-child(n+3) .project-title {
-    font-size: 0.92rem;
-    margin-bottom: 0.4rem;
-    line-height: 1.25;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
 }
 
 .project-section {
@@ -969,7 +969,7 @@ section::after {
 }
 
 .project-card:nth-child(n+3) .project-section {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.25rem;
 }
 
 .project-section h4 {
@@ -982,9 +982,9 @@ section::after {
 }
 
 .project-card:nth-child(n+3) .project-section h4 {
-    font-size: 0.73rem;
-    margin-bottom: 0.15rem;
-    gap: 0.3rem;
+    font-size: 0.68rem;
+    margin-bottom: 0.1rem;
+    gap: 0.25rem;
 }
 
 .project-section p {
@@ -994,8 +994,8 @@ section::after {
 }
 
 .project-card:nth-child(n+3) .project-section p {
-    font-size: 0.75rem;
-    line-height: 1.35;
+    font-size: 0.70rem;
+    line-height: 1.25;
 }
 
 .project-tech {
@@ -1008,8 +1008,8 @@ section::after {
 }
 
 .project-card:nth-child(n+3) .project-tech {
-    padding-top: 0.5rem;
-    gap: 0.25rem;
+    padding-top: 0.4rem;
+    gap: 0.2rem;
 }
 
 .project-tech span {
@@ -1022,9 +1022,10 @@ section::after {
 }
 
 .project-card:nth-child(n+3) .project-tech span {
-    font-size: 0.65rem;
-    padding: 0.15rem 0.45rem;
+    font-size: 0.60rem;
+    padding: 0.12rem 0.38rem;
 }
+
 
 
 
