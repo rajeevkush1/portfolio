@@ -216,14 +216,8 @@ if (typeof gsap !== 'undefined') {
     });
 }
 
-            subtitle.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-        }
-    }
-    
-    setTimeout(typeWriter, 500);
-}
+
+
 
 // Parallax effect for gradient orbs
 document.addEventListener('mousemove', (e) => {
