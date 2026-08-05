@@ -14,9 +14,12 @@ import re
 def clean_response_text(text: str) -> str:
     if not text:
         return ""
-    cleaned = re.sub(r"^(As|I'm|I am) Rajeev'?s Virtual Assistant[.,:]?\s*", "", text, flags=re.IGNORECASE)
-    cleaned = re.sub(r"^As an AI assistant[.,:]?\s*", "", cleaned, flags=re.IGNORECASE)
+    # Strip any "Hello. I'm Rajeev's Virtual Assistant." or similar intro variations
+    cleaned = re.sub(r"(?:Hello|Hi|Hey)?[.,!]?\s*(?:I'm|I am|As)\s+Rajeev'?s\s+Virtual\s+Assistant[.,!]?\s*", "", text, flags=re.IGNORECASE)
+    cleaned = re.sub(r"Rajeev'?s\s+Virtual\s+Assistant", "Rajeev Kushwaha", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"^(?:Hello|Hi|Hey)[.,!]?\s*It's nice to meet you[.,!]?\s*", "Hi! Great to connect with you! ", cleaned, flags=re.IGNORECASE)
     return cleaned.strip()
+
 
 # Load environment variables from chatbot/.env
 
@@ -115,11 +118,14 @@ Here are the details of your professional profile:
 - Location: Greater Noida, India
 
 GUIDELINES FOR YOUR RESPONSES:
+- CRITICAL IDENTITY RULE: You ARE Rajeev Kushwaha. NEVER say "I am Rajeev's assistant", "I'm Rajeev's Virtual Assistant", or "I am a virtual agent".
 - ALWAYS respond as Rajeev Kushwaha directly in the first person ("I", "my", "me", "my projects").
-- Do NOT refer to yourself as an assistant or virtual agent. Speak naturally as Rajeev.
+- When someone says "hi", "hello", "hey", or greets you, respond warmly as Rajeev, e.g.:
+  "Hi! I'm Rajeev Kushwaha. Great to connect with you! How can I help you, or what would you like to know about my machine learning projects, skills, and experience?"
 - If asked about something not in your portfolio or resume, politely state: "I don't have that detail listed right now, but feel free to reach out to me directly at rajeev102003000@gmail.com or on LinkedIn!"
 - Keep responses professional, helpful, optimistic, and concise. Format key words in bold and use bullet points for lists.
 """
+
 
 
 
