@@ -139,15 +139,83 @@ function highlightNav() {
 
 window.addEventListener('scroll', highlightNav);
 
-// Typing effect for hero subtitle (optional enhancement)
-const subtitle = document.querySelector('.hero-subtitle');
-if (subtitle) {
-    const text = subtitle.textContent;
-    subtitle.textContent = '';
-    let i = 0;
-    
-    function typeWriter() {
-        if (i < text.length) {
+/* ==========================================================================
+   GSAP & ScrollTrigger Motion System (Framer Motion / GSAP Grade)
+   ========================================================================== */
+
+if (typeof gsap !== 'undefined') {
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // 1. Hero Staggered Entrance Reveal
+    const heroTl = gsap.timeline();
+    heroTl.from('.hero-title .greeting', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' })
+          .from('.name-highlight', { opacity: 0, scale: 0.9, y: 20, duration: 0.9, ease: 'back.out(1.7)' }, '-=0.5')
+          .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.7, ease: 'power3.out' }, '-=0.4')
+          .from('.hero-description', { opacity: 0, y: 20, duration: 0.7, ease: 'power3.out' }, '-=0.4')
+          .from('.hero-buttons .btn', { opacity: 0, y: 25, stagger: 0.15, duration: 0.8, ease: 'power3.out' }, '-=0.4')
+          .from('.social-link', { opacity: 0, scale: 0.5, stagger: 0.1, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.4')
+          .from('.hero-visual', { opacity: 0, x: 40, duration: 1, ease: 'power3.out' }, '-=0.8');
+
+    // 2. Multi-Layer Parallax Depth Scrolling
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.to('.orb-1', {
+            scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 },
+            y: 250,
+            scale: 1.2
+        });
+        gsap.to('.orb-2', {
+            scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 },
+            y: -300,
+            scale: 0.8
+        });
+        gsap.to('.hero-visual', {
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+            y: 120,
+            opacity: 0.4
+        });
+
+        // 3. Scroll-Triggered Section Headers Reveal
+        gsap.utils.toArray('.section-header').forEach(header => {
+            gsap.from(header.children, {
+                scrollTrigger: { trigger: header, start: 'top 85%', toggleActions: 'play none none reverse' },
+                opacity: 0,
+                y: 40,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+
+        // 4. Staggered Skill Pills Cascade Reveal
+        gsap.utils.toArray('.skill-category').forEach(cat => {
+            gsap.from(cat.querySelectorAll('.skill-pill'), {
+                scrollTrigger: { trigger: cat, start: 'top 80%', toggleActions: 'play none none reverse' },
+                opacity: 0,
+                scale: 0.8,
+                y: 15,
+                stagger: 0.05,
+                duration: 0.5,
+                ease: 'back.out(1.5)'
+            });
+        });
+    }
+
+    // 5. Magnetic Micro-Interactions on Hover
+    document.querySelectorAll('.btn-primary, .btn-secondary, .social-link').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(btn, { x: x * 0.35, y: y * 0.35, duration: 0.3, ease: 'power2.out' });
+        });
+        btn.addEventListener('mouseleave', () => {
+            gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+        });
+    });
+}
+
             subtitle.textContent += text.charAt(i);
             i++;
             setTimeout(typeWriter, 50);
