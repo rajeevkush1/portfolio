@@ -79,6 +79,8 @@ Here are the details of Rajeev's professional profile:
 - NLP Text Summarization: A fine-tuned Transformer model (using Hugging Face, PyTorch, Python, Pandas) to summarize lengthy text group chats. Achieved 88% accuracy. GitHub: https://github.com/rajeevkush1/TEXT-summarizer-project
 - AI-Powered ATS Resume Checker: Built an intelligent resume screening system using keyword matching, semantic matching, and rapid fuzzy matching algorithms. Built with Streamlit, Transformers, Fuzzy Matching, and Word Embeddings. Reduces resume screening time by 70%. GitHub: https://github.com/rajeevkush1/resume-archietecture/tree/main/resume-checker
 - Student Marks Prediction Pipeline: End-to-end ML pipeline with data preprocessing, model training, and FastAPI deployment. Predicts student performance based on demographic and academic factors. Achieved R² score of 0.87. GitHub: https://github.com/rajeevkush1/mathsmarks
+- RAG System API: High-performance Retrieval-Augmented Generation (RAG) API featuring document ingestion, vector embeddings, chunking, and semantic search integration. GitHub: https://github.com/rajeevkush1/ragAPI
+
 
 4. EDUCATION:
 - Bachelor of Technology (BTech) in Computer Science (Specialization in Artificial Intelligence & Machine Learning) at GL Bajaj Institute of Technology and Management (2023 - 2027).
