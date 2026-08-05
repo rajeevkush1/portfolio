@@ -1,0 +1,27 @@
+# Environment variables & secrets
+.env
+*.env
+chatbot/.env
+
+# Python / Virtual Environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Binaries & Tooling
+cloudflared.exe
+cloudflared
+
+# Logs & Deployment outputs
+*.log
+deploy_err.txt
+deploy_out.txt
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

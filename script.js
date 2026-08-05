@@ -130,3 +130,155 @@ document.addEventListener('mousemove', (e) => {
 });
 
 console.log('Portfolio loaded successfully! 🚀');
+
+// ==========================================================================
+// Chatbot Widget Functionality
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotTrigger = document.getElementById('chatbotTrigger');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+    const chatbotTyping = document.getElementById('chatbotTyping');
+
+    let chatHistory = [];
+    // Default API URL (can be changed to production URL in deployment)
+    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://127.0.0.1:8000' 
+        : 'http://127.0.0.1:8000'; // Default to localhost backend
+
+    // Format simple markdown (bold and lists) and newlines
+    function formatMessageText(text) {
+        // Escape HTML to prevent XSS
+        let formatted = text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        
+        // Bold: **text** -> <strong>text</strong>
+        formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Code blocks: `code` -> <code>code</code>
+        formatted = formatted.replace(/`(.*?)`/g, '<code>$1</code>');
+
+        // Newlines -> <br>
+        formatted = formatted.replace(/\n/g, '<br>');
+
+        return formatted;
+    }
+
+    // Add a message to the chat display
+    function addMessage(sender, text) {
+        if (!chatbotMessages) return;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chatbot-message', sender);
+
+        const contentDiv = document.createElement('div');
+        contentDiv.classList.add('message-content');
+        contentDiv.innerHTML = formatMessageText(text);
+
+        const timeSpan = document.createElement('span');
+        timeSpan.classList.add('message-time');
+        const now = new Date();
+        timeSpan.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(timeSpan);
+        chatbotMessages.appendChild(messageDiv);
+
+        // Scroll to the bottom
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Toggle chatbot window
+    chatbotTrigger?.addEventListener('click', () => {
+        chatbotWindow?.classList.toggle('chatbot-hidden');
+        
+        // Remove notification dot once opened
+        const notificationDot = chatbotTrigger.querySelector('.chatbot-notification-dot');
+        if (notificationDot) {
+            notificationDot.style.display = 'none';
+        }
+
+        // Focus input if opened
+        if (chatbotWindow && !chatbotWindow.classList.contains('chatbot-hidden')) {
+            chatbotInput?.focus();
+        }
+    });
+
+    // Close chatbot window
+    chatbotClose?.addEventListener('click', () => {
+        chatbotWindow?.classList.add('chatbot-hidden');
+    });
+
+    // Send message function
+    async function handleSendMessage() {
+        if (!chatbotInput || !chatbotSend || !chatbotTyping || !chatbotMessages) return;
+        
+        const message = chatbotInput.value.trim();
+        if (!message) return;
+
+        // Display user message
+        addMessage('user', message);
+        chatbotInput.value = '';
+        
+        // Disable inputs while loading
+        chatbotInput.disabled = true;
+        chatbotSend.disabled = true;
+        chatbotTyping.classList.remove('chatbot-hidden');
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+        try {
+            const response = await fetch(`${API_URL}/api/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: message,
+                    history: chatHistory
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.detail || 'Failed to get response');
+            }
+
+            // Hide typing indicator
+            chatbotTyping.classList.add('chatbot-hidden');
+
+            // Add bot response to UI
+            addMessage('bot', data.response);
+
+            // Update local history
+            chatHistory.push({ role: 'user', content: message });
+            chatHistory.push({ role: 'assistant', content: data.response });
+
+        } catch (error) {
+            console.error('Chatbot API Error:', error);
+            chatbotTyping.classList.add('chatbot-hidden');
+            addMessage('bot', `⚠️ Sorry, I ran into an error: ${error.message}. Please make sure the backend server is running and the GEMINI_API_KEY is configured.`);
+        } finally {
+            // Re-enable inputs
+            chatbotInput.disabled = false;
+            chatbotSend.disabled = false;
+            chatbotInput.focus();
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+    }
+
+    // Send button click
+    chatbotSend?.addEventListener('click', handleSendMessage);
+
+    // Enter key press in input
+    chatbotInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            handleSendMessage();
+        }
+    });
+});

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport removed to force desktop view on all devices -->
     <title>Rajeev Kushwaha - ML Engineer & Deep Learning Enthusiast</title>
     <meta name="description"
         content="Portfolio of Rajeev Kushwaha - Aspiring ML Engineer leveraging Python, PyTorch, and cloud platforms to build robust, scalable AI solutions.">
@@ -37,11 +37,6 @@
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
@@ -733,6 +728,51 @@
             </div>
         </div>
     </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbotTrigger" class="chatbot-trigger" title="Chat with Rajeev's AI Assistant">
+        <i class="fas fa-comment-dots"></i>
+        <span class="chatbot-notification-dot"></span>
+    </div>
+
+    <div id="chatbotWindow" class="chatbot-window chatbot-hidden">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chatbot-header-text">
+                    <h4>Rajeev's Assistant</h4>
+                    <span class="chatbot-status"><span class="status-dot"></span> Online</span>
+                </div>
+            </div>
+            <button id="chatbotClose" class="chatbot-close-btn" aria-label="Close Chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div id="chatbotMessages" class="chatbot-messages">
+            <div class="chatbot-message bot">
+                <div class="message-content">
+                    Hi! I am Rajeev's virtual AI assistant. Ask me anything about his skills, machine learning projects, education, or how to contact him!
+                </div>
+                <span class="message-time">Just now</span>
+            </div>
+        </div>
+
+        <div id="chatbotTyping" class="chatbot-typing chatbot-hidden">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbotInput" placeholder="Ask about Rajeev's work..." autocomplete="off">
+            <button id="chatbotSend" class="chatbot-send-btn" aria-label="Send Message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
