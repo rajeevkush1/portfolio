@@ -1,24 +1,24 @@
-# Use nginx alpine for lightweight static file serving
-FROM nginx:alpine
+# Use an official lightweight Python base image
+FROM python:3.14-slim
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# Install uv for high-performance dependency resolution and caching
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Remove default nginx static files
-RUN rm -rf ./*
+# Set the working directory inside the container
+WORKDIR /app
 
-# Copy all portfolio files to nginx html directory
+# Copy dependency definition files first for optimal Docker layer caching
+COPY pyproject.toml uv.lock ./
+
+# Install project dependencies
+RUN uv sync --frozen --no-install-project
+
+# Copy the rest of the application files to the container
 COPY . .
 
-# Copy custom nginx configuration (optional - for better routing)
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Expose port 8080 (standard for Cloud Run)
+EXPOSE 8080
 
-# Expose port 80
-EXPOSE 80
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Run the FastAPI app using uvicorn. It reads the PORT environment variable 
+# set by the cloud provider, defaulting to 8080.
+CMD ["sh", "-c", "uv run uvicorn chatbot.app:app --host 0.0.0.0 --port ${PORT:-8080}"]

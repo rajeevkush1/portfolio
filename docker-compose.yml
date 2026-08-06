@@ -7,16 +7,15 @@ services:
       dockerfile: Dockerfile
     container_name: rajeev-portfolio
     ports:
-      - "8080:80"
+      - "8080:8080"
     restart: unless-stopped
     networks:
       - portfolio-network
     labels:
       - "com.portfolio.description=Rajeev Kushwaha ML/AI Portfolio"
       - "com.portfolio.version=1.0"
-    environment:
-      - NGINX_HOST=localhost
-      - NGINX_PORT=80
+    env_file:
+      - chatbot/.env
 
 networks:
   portfolio-network:
