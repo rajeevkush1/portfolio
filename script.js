@@ -248,10 +248,12 @@ function initChatbot() {
     if (!chatbotTrigger || !chatbotWindow) return;
 
     let chatHistory = [];
-    // Dynamic API URL: use current origin if on http server, fallback to http://127.0.0.1:8000
-    const API_URL = (window.location.protocol.startsWith('http'))
-        ? window.location.origin 
-        : 'http://127.0.0.1:8000';
+    // Dynamic API URL: use Cloud Run backend if hosted on GitHub Pages, current origin if on local server, fallback to localhost
+    const API_URL = (window.location.host.includes('github.io'))
+        ? 'https://portfolio-423150728087.us-central1.run.app'
+        : (window.location.protocol.startsWith('http'))
+            ? window.location.origin 
+            : 'http://127.0.0.1:8000';
 
     // Format simple markdown (bold and lists) and newlines
     function formatMessageText(text) {
